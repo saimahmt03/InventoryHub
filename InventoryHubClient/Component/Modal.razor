@@ -1,0 +1,23 @@
+@using InventoryHubClient.Component;
+@using InventoryHubClient.DTO;
+@using InventoryHubClient.Service;
+
+<div class="modal-overlay" @onclick="CloseModal" style="@(IsVisible ? "display: block;" : "display: none;")">
+    <div class="modal-content" @onclick:stopPropagation>
+        <button class="close-button" @onclick="CloseModal">X</button>
+        @ChildContent
+    </div>
+</div>
+
+@code
+{
+    [Parameter] public bool IsVisible { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private async Task CloseModal()
+    {
+        await OnClose.InvokeAsync();
+    }
+}
+

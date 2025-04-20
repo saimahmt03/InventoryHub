@@ -1,0 +1,14 @@
+@using InventoryHubClient.DTO;
+@using InventoryHubClient.Component;
+@page "/productupdatetable"
+
+<ProductUpdateTable OnSave=OnProductUpdated/>
+
+@code
+{
+    private Product _product = new Product();
+    private void OnProductUpdated(Product product)
+    {
+        _product = product;
+    }
+}

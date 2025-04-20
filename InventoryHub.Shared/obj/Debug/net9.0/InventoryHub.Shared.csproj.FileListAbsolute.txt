@@ -1,0 +1,11 @@
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\bin\Debug\net9.0\InventoryHub.Shared.deps.json
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\bin\Debug\net9.0\InventoryHub.Shared.dll
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\bin\Debug\net9.0\InventoryHub.Shared.pdb
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\obj\Debug\net9.0\InventoryHub.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\obj\Debug\net9.0\InventoryHub.Shared.AssemblyInfoInputs.cache
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\obj\Debug\net9.0\InventoryHub.Shared.AssemblyInfo.cs
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\obj\Debug\net9.0\InventoryHub.Shared.csproj.CoreCompileInputs.cache
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\obj\Debug\net9.0\InventoryHub.Shared.dll
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\obj\Debug\net9.0\refint\InventoryHub.Shared.dll
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\obj\Debug\net9.0\InventoryHub.Shared.pdb
+C:\Users\smt\Desktop\CIBI\SMT\Coursera\Project\InventoryHub\InventoryHub.Shared\obj\Debug\net9.0\ref\InventoryHub.Shared.dll

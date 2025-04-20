@@ -1,0 +1,17 @@
+@using InventoryHubClient.DTO;
+@using InventoryHubClient.Component;
+@page "/addproduct"
+
+<ProductForm OnProductChanged="@OnProductChanged"/>
+
+@code 
+{
+    private Product _product = new Product();
+	private void OnProductChanged(Product product)
+	{
+        _product = product;
+	}
+}   
+
+<NavLink href="/view-update-product-list">Go Toggle Product Table</NavLink>
+

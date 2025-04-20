@@ -1,0 +1,63 @@
+﻿@using InventoryHubClient.Component;
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+@inject Blazored.SessionStorage.ISessionStorageService SessionStorage
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Welcome to InventoryHubClient</h1>
+
+<h3>Theme Selector</h3>
+<button @onclick="ToggleTheme">Toggle Theme</button>
+<p>Current Theme: @theme</p>
+
+@code {
+    private string theme = "light";
+    private async Task ToggleTheme()
+    {
+        theme = theme == "light" ? "dark" : "light";
+        await LocalStorage.SetItemAsync("user-theme", theme);
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        theme = await LocalStorage.GetItemAsync<string>("user-theme") ?? "light";
+    }
+}
+
+<button @onclick="ClearStorage">Clear All Storage</button>
+
+@code {
+    private async Task ClearStorage()
+    {
+        await LocalStorage.ClearAsync();
+        await SessionStorage.ClearAsync();
+    }
+}
+
+<br/>
+<NavLink href="/cart">Go Toggle Cart</NavLink>
+<br/>
+<NavLink href="/addproduct">Go Toggle Products</NavLink>
+<br/>
+<h3>Modal Example</h3>
+
+<button @onclick="ShowModal">Open Modal</button>
+
+<Modal IsVisible="@isModalVisible" OnClose="HideModal">
+    <h4>Hello from Modal!</h4>
+    <p>This is some modal content.</p>
+</Modal>
+
+@code {
+    private bool isModalVisible = false;
+
+    private void ShowModal()
+    {
+        isModalVisible = true;
+    }
+
+    private void HideModal()
+    {
+        isModalVisible = false;
+    }
+}

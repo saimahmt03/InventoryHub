@@ -1,0 +1,92 @@
+@using System.ComponentModel.DataAnnotations
+@using InventoryHubClient.DTO
+@using InventoryHubClient.Service
+@inject InventoryHubClient.Service.IService ServiceState
+@inject InventoryHubClient.Service.Storage.ISessionStorage SessionStorage
+
+@code
+{
+    [Parameter]
+    public Product Product { get; set; } = new Product();
+
+    [Parameter]
+    public ProductList _ProductList { get; set; } = new ProductList();
+
+    [Parameter]
+    public EventCallback<Product> OnProductChanged { get; set; }
+    
+    public async Task<ProductList> GetProductListAsync()
+    {
+        // Try to get the cached product list from session storage
+        var cachedProductList = await SessionStorage.GetItemAsync<ProductList>("CachedProductList");
+        // If cached product list is available, use it
+        if (cachedProductList != null && cachedProductList.Products.Count > 0)
+        {
+            return cachedProductList;
+        }
+        else
+        {
+            // If cache is empty, fetch from API and store in session storage
+            _ProductList = await ServiceState.GetProductListAsync();
+            await SessionStorage.SetItemAsync("CachedProductList", _ProductList);
+            return _ProductList;
+        }
+    }
+
+    private async Task HandleValidProductAdd()
+    {
+
+        await ServiceState.AddProductAsync(Product);
+
+        _ProductList.Products.Add(Product);
+
+        Product = new Product(); 
+
+        if (OnProductChanged.HasDelegate)
+        {
+            await OnProductChanged.InvokeAsync(Product);
+        }
+
+        await SessionStorage.SetItemAsync("CachedProductList", _ProductList);
+    }
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-04"></div>
+        <div class="col-md-04">
+            <h3>Product Details:</h3>
+        </div>
+        <div class="col-md-04"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-04"></div>
+        <div class="col-md-04">
+            <EditForm Model="@Product" OnValidSubmit="HandleValidProductAdd" class="form-group">
+                <DataAnnotationsValidator />
+
+                <div class="form-group">
+                    <label for="productName">Name</label>
+                    <InputText id="productName" class="form-control" @bind-Value="Product.Name"/>
+                    <ValidationMessage For="@(() => Product.Name)" class="text-danger" />
+                </div>
+
+                <div class="form-group">
+                    <label for="productPrice">Price</label>
+                    <InputNumber id="productPrice" class="form-control" @bind-Value="Product.Price" />
+                    <ValidationMessage For="@(() => Product.Price)" class="text-danger" />
+                </div>
+
+                <div class="form-group">
+                    <label for="productStock">Stock</label>
+                    <InputNumber id="productStock" class="form-control" @bind-Value="Product.Stock" />
+                    <ValidationMessage For="@(() => Product.Stock)" class="text-danger" />
+                </div>              
+
+                <button type="submit" class="btn btn-primary btn-block mt-3">Add Product</button>
+            </EditForm>
+        </div>
+        <div class="col-md-04"></div>
+    </div>
+</div>
