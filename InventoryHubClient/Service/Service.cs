@@ -121,7 +121,7 @@ namespace InventoryHubClient.Service
             try
             {
                 // API call to remove the product
-                var response = await _inventoryHubClient.PutAsJsonAsync("removeproduct", product); 
+                var response = await _inventoryHubClient.DeleteAsync("removeproduct", product); 
                 
                 _responseStatusHandler.HandleResponseStatus(response, baseResponse);
                 

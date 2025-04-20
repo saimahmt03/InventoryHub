@@ -44,7 +44,7 @@ namespace InventoryHubAPI.Controller
             }
         }
 
-        [HttpPost("updateproduct")]
+        [HttpPut("updateproduct")]
         public async Task<IActionResult> UpdateProduct([FromBody] ProductRequest productRequest)
         {
             BaseResult result = new BaseResult();
@@ -71,7 +71,7 @@ namespace InventoryHubAPI.Controller
             }
         }   
     
-        [HttpPost("removeproduct")]
+        [HttpDelete("removeproduct")]
         public async Task<IActionResult> RemoveProduct([FromBody] ProductRequest productRequest)
         {
             BaseResult result = new BaseResult();
